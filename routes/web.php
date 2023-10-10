@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $user = App\Models\User::first();
+
+    $post = $user->posts()->create([
+        'title' => 'foobar',
+        'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur eligendi, odit expedita tenetur, laborum quae quas facere sint reprehenderit non minima, consequuntur autem quidem! Cum deserunt asperiores accusamus delectus dolor.',
+    ]);
+
+    $post->tags()->attach(1);
+
     return view('welcome');
 });
